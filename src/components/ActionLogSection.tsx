@@ -60,9 +60,15 @@ export const ActionLogSection = () => {
     .sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime());
 
   return (
-    <div className="container mx-auto py-8 px-4">
+    <div className="container mx-auto py-12 px-4 animate-fade-in">
+      <div className="mb-8">
+        <h2 className="text-3xl font-bold text-gray-900">Action Log</h2>
+        <p className="mt-2 text-gray-500">Track all ticket-related activities</p>
+      </div>
       <div className="flex items-center justify-between mb-6">
-        <h2 className="text-2xl font-bold text-gray-900">Action Log</h2>
+        <div className="text-sm text-gray-500">
+          Showing {filteredLogs.length} actions
+        </div>
         <Select
           value={filterType}
           onValueChange={(value) => setFilterType(value as ActionType | "all")}
@@ -80,27 +86,27 @@ export const ActionLogSection = () => {
           </SelectContent>
         </Select>
       </div>
-      <div className="border rounded-lg">
+      <div className="border border-gray-100 rounded-lg overflow-hidden bg-white shadow-sm">
         <Table>
           <TableHeader>
-            <TableRow>
-              <TableHead>Action</TableHead>
-              <TableHead>Timestamp</TableHead>
-              <TableHead>Performed By</TableHead>
-              <TableHead>Details</TableHead>
+            <TableRow className="bg-gray-50">
+              <TableHead className="font-semibold">Action</TableHead>
+              <TableHead className="font-semibold">Timestamp</TableHead>
+              <TableHead className="font-semibold">Performed By</TableHead>
+              <TableHead className="font-semibold">Details</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
             {filteredLogs.map((log) => (
-              <TableRow key={log.id}>
-                <TableCell className="font-medium">
+              <TableRow key={log.id} className="hover:bg-gray-50 transition-colors">
+                <TableCell className="font-medium text-primary">
                   {actionTypeLabels[log.actionType]}
                 </TableCell>
-                <TableCell>
+                <TableCell className="text-gray-600">
                   {format(new Date(log.timestamp), "MMM d, yyyy HH:mm")}
                 </TableCell>
-                <TableCell>{log.performedBy}</TableCell>
-                <TableCell>{log.details}</TableCell>
+                <TableCell className="text-gray-600">{log.performedBy}</TableCell>
+                <TableCell className="text-gray-600">{log.details}</TableCell>
               </TableRow>
             ))}
           </TableBody>

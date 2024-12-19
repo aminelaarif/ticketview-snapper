@@ -8,9 +8,9 @@ interface TicketCardProps {
 }
 
 const stateColors = {
-  open: "bg-blue-100 text-blue-800",
-  in_progress: "bg-yellow-100 text-yellow-800",
-  closed: "bg-green-100 text-green-800",
+  open: "bg-blue-50 text-blue-700 border border-blue-200",
+  in_progress: "bg-amber-50 text-amber-700 border border-amber-200",
+  closed: "bg-emerald-50 text-emerald-700 border border-emerald-200",
 };
 
 const stateLabels = {
@@ -23,17 +23,19 @@ export const TicketCard = ({ ticket, onClick }: TicketCardProps) => {
   return (
     <div
       onClick={onClick}
-      className="p-4 bg-white rounded-lg shadow-sm border border-gray-200 hover:shadow-md transition-shadow cursor-pointer"
+      className="group p-6 bg-white rounded-lg border border-gray-100 hover:border-primary/20 hover:shadow-lg transition-all duration-300 cursor-pointer animate-fade-in"
     >
-      <h3 className="text-lg font-semibold text-gray-900 mb-2">{ticket.title}</h3>
+      <h3 className="text-lg font-semibold text-gray-900 group-hover:text-primary transition-colors mb-3">
+        {ticket.title}
+      </h3>
       <div className="flex items-center justify-between">
-        <div className="flex items-center space-x-2 text-sm text-gray-600">
+        <div className="flex items-center space-x-2 text-sm text-gray-500">
           <Calendar className="w-4 h-4" />
           <span>{new Date(ticket.dateOpened).toLocaleDateString()}</span>
         </div>
         <span
           className={cn(
-            "px-2 py-1 rounded-full text-xs font-medium",
+            "px-3 py-1 rounded-full text-xs font-medium",
             stateColors[ticket.state]
           )}
         >

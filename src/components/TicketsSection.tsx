@@ -38,9 +38,12 @@ export const TicketsSection = () => {
   };
 
   return (
-    <div className="container mx-auto py-8 px-4">
-      <h2 className="text-2xl font-bold text-gray-900 mb-6">Tickets</h2>
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+    <div className="container mx-auto py-12 px-4">
+      <div className="mb-8">
+        <h2 className="text-3xl font-bold text-gray-900">Tickets</h2>
+        <p className="mt-2 text-gray-500">Manage and track support requests</p>
+      </div>
+      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {mockTickets.map((ticket) => (
           <TicketCard
             key={ticket.id}
